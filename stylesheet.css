@@ -386,6 +386,7 @@ img {
 
 /* --- NAV AUTH BUTTONS --- */
 .nav-auth {
+  position: relative;
   display: flex;
   gap: 16px;
 }
@@ -952,8 +953,12 @@ img {
   margin-right: -50vw;
   padding-top: 80px;
   padding-bottom: 0;
-  min-height: 600px;
-  border-top: 1px solid #f0f0f0;
+  min-height: 100vh; /* Make section at least full viewport height */
+  display: flex;
+  align-items: center;
+  padding-top: 80px; /* Adjust if your navbar is fixed */
+  padding-bottom: 80px;
+  box-sizing: border-box;
 }
 
 .contactus-modern-container {

@@ -9,6 +9,12 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="logo.png">
+  <script>
+    // Redirect to login.html if not logged in
+    if (!localStorage.getItem('isLoggedIn')) {
+      window.location.href = 'login.html';
+    }
+  </script>
 </head>
 <body>
   <!-- Header/Navbar -->
@@ -57,7 +63,7 @@
           <p class="hero-desc">
             Welcome to <b>Otium Elegentia</b>—a vibrant space where students share their passions, hobbies, and creative journeys. Our gallery celebrates the unique stories, talents, and inspirations of each member, from music and sports to art, literature, and beyond. Explore diverse collections, discover new interests, and connect with a community that values growth, friendship, and self-expression.
           </p>
-          <a href="#portfolio" class="explore-btn">Explore Our Collections</a>
+          <a href="#collections" class="explore-btn">Explore Our Collections</a>
         </div>
       </div>
       <div class="slider-center">

@@ -7,6 +7,13 @@
   <link rel="stylesheet" href="../stylesheet.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="logo.png">
+  <script>
+    // Redirect to login.html if not logged in
+    if (!localStorage.getItem('isLoggedIn')) {
+      window.location.href = '../login.html';
+    }
+  </script>
   <style>
     body {
       background: #f9f9f2;
