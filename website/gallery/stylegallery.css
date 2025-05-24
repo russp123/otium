@@ -1,0 +1,132 @@
+.header {
+    background-color: #cbb89e; 
+    border-radius: 6px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Optional: adjust spacing and look */
+  .header h3 {
+    margin: 0;
+    font-family: Georgia, serif;
+  }
+  
+  .nav-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+  }  
+  
+body {
+    font-family: 'Georgia', serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f2;
+    color: #333;
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f2;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .nav-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .nav-links a:hover {
+    color: #a78c5f;
+  }
+  
+      .navbar {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 10px;
+        background-color: #cbb89e;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .navbar a {
+        margin-left: 20px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      .navbar a:hover {
+        color: #a78c5f;
+      }
+.main-title{
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+}
+p{
+    max-width: 100%;
+    text-align: center;
+    font-family: Georgia, serif;
+    padding: 0px 50px;
+    font-size: 16px;
+}
+.second{
+    margin-bottom: 30px;
+    padding: 30px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+}
+.picture {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Sets three equal columns */
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  .picture img {
+    width: 250px;
+    max-height: 240px;
+    height: auto;
+    border-radius: 8px;
+  }
+  .content-text {
+    padding: 10px;
+    max-width: 100%;
+    text-align: center;
+}
+.content-text h4 {
+    color: brown;
+    margin-bottom: 15px;
+}
+.content-text h5{
+    font-size: 16px;
+    font-family: Georgia, serif;
+    text-align: center;
+}
+h3.a{
+    padding: 0px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+}
+h4.b{
+    text-align: center;
+    font-family: Georgia, serif;
+    font-weight: bold;
+    font-size: 20px;
+}
