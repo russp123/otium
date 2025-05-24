@@ -3,88 +3,278 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up - Elegentia</title>
+  <title>Sign Up - Otium Elegentia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="logo.png">
   <style>
+    :root {
+      --primary: #5b6dfa;
+      --primary-dark: #3a4db7;
+      --accent: #ff357a;
+      --bg: #f7f8fa;
+      --input-bg: #f3f6fd;
+      --input-border: #e0e3eb;
+      --text: #222;
+      --muted: #888;
+      --radius: 18px;
+      --shadow: 0 8px 32px 0 rgba(60, 60, 120, 0.08);
+    }
     body {
-      font-family: 'Georgia', serif;
       background: #f9f9f2;
-      color: #333;
+      min-height: 100vh;
+      font-family: 'Quicksand', sans-serif;
       display: flex;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
+      justify-content: center;
     }
-    .signup-container {
-      background-color: white;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 300px;
-    }
-    .signup-container h1 {
-      text-align: center;
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-    .input-field {
+    .container {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      max-width: 950px;
       width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
+      min-height: 600px;
+      overflow: hidden;
     }
-    .button {
+    .login-left {
+      flex: 1.1;
+      padding: 0 48px 0 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 40px;
+      margin-bottom: 32px;
+    }
+    .logo-row img {
+      height: 40px;
+    }
+    .logo-row span {
+      font-size: 1em;
+      color: #ff944d;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .login-title {
+      font-size: 2em;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
+      margin-top: 0;
+    }
+    .login-desc {
+      color: var(--muted);
+      margin-bottom: 32px;
+      font-size: 1em;
+    }
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .input-group {
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .input-group input {
       width: 100%;
-      background: #cbb89d;
-      color: white;
+      padding: 20px 16px 8px 16px;
+      border: 1.5px solid var(--input-border);
+      border-radius: 10px;
+      background: var(--input-bg);
+      font-size: 1em;
+      color: var(--text);
+      outline: none;
+      transition: border 0.2s, background 0.2s;
+    }
+    .input-group input:focus {
+      border-color: var(--primary);
+      background: #eaf0ff;
+    }
+    .input-group label {
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      background: transparent;
+      color: #888;
+      font-size: 1em;
+      pointer-events: none;
+      transition: 0.2s;
+      padding: 0 2px;
+      z-index: 2;
+    }
+    .input-group input:focus + label,
+    .input-group input:not(:placeholder-shown) + label {
+      top: 7px;
+      left: 14px;
+      font-size: 0.85em;
+      color: var(--primary);
+      background: var(--input-bg);
+      padding: 0 4px;
+    }
+    .login-btn {
+      background: var(--primary);
+      color: #fff;
       border: none;
-      padding: 12px;
-      font-size: 16px;
+      border-radius: 8px;
+      padding: 13px 0;
+      font-size: 1.1em;
+      font-weight: 600;
       cursor: pointer;
-      border-radius: 6px;
-      margin-top: 10px;
+      margin-top: 8px;
+      transition: background 0.2s;
     }
-    .button:hover {
-      background: #a78c5f;
+    .login-btn:hover {
+      background: var(--primary-dark);
     }
-    .login-link {
+    .signup-link {
       text-align: center;
-      margin-top: 15px;
+      margin: 18px 0 8px 0;
+      color: var(--muted);
+      font-size: 1em;
+    }
+    .signup-link a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 4px;
+      transition: color 0.2s;
+    }
+    .signup-link a:hover {
+      color: var(--primary);
+    }
+    .or-divider {
+      display: flex;
+      align-items: center;
+      margin: 18px 0 10px 0;
+      color: var(--muted);
+      font-size: 0.98em;
+    }
+    .or-divider::before, .or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e0e3eb;
+      margin: 0 10px;
+    }
+    .social-login {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .social-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 0;
+      border: 1.5px solid var(--input-border);
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 1em;
+      color: var(--text);
+      transition: border 0.2s, box-shadow 0.2s;
+    }
+    .social-btn:hover {
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px 0 rgba(91,109,250,0.07);
+    }
+    .login-right {
+      flex: 1;
+      background: #e8edfa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 320px;
+      position: relative;
+      overflow: hidden;
+    }
+    .login-right img {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px 0 rgba(91,109,250,0.13);
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .container { flex-direction: column; min-width: 320px; }
+      .login-right { min-height: 220px; }
+      .login-left { padding: 32px 18px; }
+      .logo-row { margin-top: 24px; }
+    }
+    @media (max-width: 600px) {
+      .container { min-width: 0; }
+      .login-right { display: none; }
+      .login-left { padding: 24px 8px; }
     }
   </style>
 </head>
 <body>
-
-  <div class="signup-container">
-    <h1>Sign Up</h1>
-    <form id="signupForm" action="login.html" method="POST">
-      <input type="text" class="input-field" placeholder="Username" name="username" required>
-      <input type="email" class="input-field" placeholder="Email" name="email" required>
-      <input type="password" class="input-field" placeholder="Password" name="password" required>
-      <button type="submit" class="button">Sign Up</button>
-    </form>
-    <div class="login-link">
-      <p>Already have an account? <a href="login.html">Login</a></p>
+  <div class="container">
+    <div class="login-left">
+      <div class="logo-row">
+        <img src="logo.png" alt="Otium Elegentia Logo">
+        <span>Otium Elegentia</span>
+      </div>
+      <div class="login-title">Sign Up</div>
+      <div class="login-desc">to create your Otium Elegentia gallery account</div>
+      <form class="login-form" id="signupForm" action="login.html" method="POST">
+        <div class="input-group">
+          <input type="text" id="username" name="username" placeholder=" " required autocomplete="username">
+          <label for="username">Username</label>
+        </div>
+        <div class="input-group">
+          <input type="email" id="email" name="email" placeholder=" " required autocomplete="email">
+          <label for="email">Email</label>
+        </div>
+        <div class="input-group">
+          <input type="password" id="password" name="password" placeholder=" " required autocomplete="new-password">
+          <label for="password">Password</label>
+        </div>
+        <button type="submit" class="login-btn">Sign Up</button>
+      </form>
+      <div class="signup-link">
+        Already have an account?
+        <a href="login.html">Login</a>
+      </div>
+      <div class="or-divider">Or sign up with</div>
+      <div class="social-login">
+        <button class="social-btn" type="button"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook" width="20"> Facebook</button>
+        <button class="social-btn" type="button"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" width="20"> Google</button>
+        <button class="social-btn" type="button"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="Apple" width="20"> Apple</button>
+      </div>
+    </div>
+    <div class="login-right">
+      <img src="images/gallery.jpg" alt="Pic">
     </div>
   </div>
-
-  
   <script>
     document.querySelector('#signupForm').addEventListener('submit', function(e) {
       e.preventDefault();  // Prevent the default form submission
-      
+
       // Save form data to localStorage
-      localStorage.setItem('username', document.querySelector('[name="username"]').value);
       localStorage.setItem('email', document.querySelector('[name="email"]').value);
       localStorage.setItem('password', document.querySelector('[name="password"]').value);
-      
-      // Redirect to the success page after saving data
+      localStorage.setItem('username', document.querySelector('[name="username"]').value);
+
+      // Show success popup
+      alert('Registration successful! You can now log in.');
+
+      // Redirect to the login page after saving data
       window.location.href = 'login.html';
     });
   </script>
-  
-
 </body>
 </html>

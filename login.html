@@ -1,172 +1,304 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Elegentia</title>
+  <title>Login - Otium Elegentia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="logo.png">
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Quicksand", sans-serif;
+    :root {
+      --primary: #5b6dfa;
+      --primary-dark: #3a4db7;
+      --accent: #ff357a;
+      --bg: #f7f8fa;
+      --input-bg: #f3f6fd;
+      --input-border: #e0e3eb;
+      --text: #222;
+      --muted: #888;
+      --radius: 18px;
+      --shadow: 0 8px 32px 0 rgba(60, 60, 120, 0.08);
     }
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: #f9f9f2;
       min-height: 100vh;
-      background: #111;
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      max-width: 950px;
       width: 100%;
+      min-height: 600px;
       overflow: hidden;
     }
-    .ring {
-      position: relative;
-      width: 500px;
-      height: 500px;
+    .login-left {
+      flex: 1.1;
+      padding: 0 48px 0 48px;
       display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .ring i {
-      position: absolute;
-      inset: 0;
-      border: 2px solid #fff;
-      transition: 0.5s;
-    }
-    .ring i:nth-child(1) {
-      border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
-      animation: animate 6s linear infinite;
-    }
-    .ring i:nth-child(2) {
-      border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
-      animation: animate 4s linear infinite;
-    }
-    .ring i:nth-child(3) {
-      border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
-      animation: animate2 10s linear infinite;
-    }
-    .ring:hover i {
-      border: 6px solid var(--clr);
-      filter: drop-shadow(0 0 20px var(--clr));
-    }
-    @keyframes animate {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-    @keyframes animate2 {
-      0% {
-        transform: rotate(360deg);
-      }
-      100% {
-        transform: rotate(0deg);
-      }
-    }
-    .login {
-      position: absolute;
-      width: 300px;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
-      gap: 55px; /* Increase gap for better spacing */
+      justify-content: flex-start;
     }
-    .login h2 {
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 40px;
+      margin-bottom: 32px;
+    }
+    .logo-row img {
+      height: 40px;
+    }
+    .logo-row span {
+      font-size: 1em;
+      color: #ff944d;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .login-title {
       font-size: 2em;
-      color: #fff;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
+      margin-top: 0;
     }
-    .login .inputBx {
-      position: relative;
-      width: 100%;
+    .login-desc {
+      color: var(--muted);
+      margin-bottom: 32px;
+      font-size: 1em;
     }
-    .login .inputBx input {
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .input-group {
       position: relative;
+      margin-bottom: 8px;
+    }
+    .input-group input {
       width: 100%;
-      padding: 12px 20px;
-      background: transparent;
-      border: 2px solid #fff;
-      border-radius: 20px; /* Reduce the roundness */
-      font-size: 1.2em;
-      color: #fff;
-      box-shadow: none;
+      padding: 20px 16px 8px 16px;
+      border: 1.5px solid var(--input-border);
+      border-radius: 10px;
+      background: var(--input-bg);
+      font-size: 1em;
+      color: var(--text);
       outline: none;
+      transition: border 0.2s, background 0.2s;
     }
-    .login .inputBx input[type="submit"] {
-      width: 100%;
-      background: linear-gradient(45deg, #ff357a, #fff172);
-      border: none;
-      cursor: pointer;
+    .input-group input:focus {
+      border-color: var(--primary);
+      background: #eaf0ff;
     }
-    .login .inputBx input::placeholder {
-      color: rgba(255, 255, 255, 0.75);
+    .input-group label {
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      background: transparent;
+      color: #888;
+      font-size: 1em;
+      pointer-events: none;
+      transition: 0.2s;
+      padding: 0 2px;
+      z-index: 2;
     }
-    .login .links {
-      position: relative;
-      width: 100%;
+    .input-group input:focus + label,
+    .input-group input:not(:placeholder-shown) + label {
+      top: 7px;
+      left: 14px;
+      font-size: 0.85em;
+      color: var(--primary);
+      background: var(--input-bg);
+      padding: 0 4px;
+    }
+    .form-options {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
+      font-size: 0.98em;
+      margin-bottom: 8px;
     }
-    .login .links a {
-      color: #fff;
+    .form-options label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      cursor: pointer;
+      user-select: none;
+    }
+    .form-options a {
+      color: var(--accent);
       text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .form-options a:hover {
+      color: var(--primary);
+    }
+    .login-btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 13px 0;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+    .login-btn:hover {
+      background: var(--primary-dark);
+    }
+    .signup-link {
+      text-align: center;
+      margin: 18px 0 8px 0;
+      color: var(--muted);
+      font-size: 1em;
+    }
+    .signup-link a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 4px;
+      transition: color 0.2s;
+    }
+    .signup-link a:hover {
+      color: var(--primary);
+    }
+    .or-divider {
+      display: flex;
+      align-items: center;
+      margin: 18px 0 10px 0;
+      color: var(--muted);
+      font-size: 0.98em;
+    }
+    .or-divider::before, .or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e0e3eb;
+      margin: 0 10px;
+    }
+    .social-login {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .social-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 0;
+      border: 1.5px solid var(--input-border);
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 1em;
+      color: var(--text);
+      transition: border 0.2s, box-shadow 0.2s;
+    }
+    .social-btn:hover {
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px 0 rgba(91,109,250,0.07);
+    }
+    .login-right {
+      flex: 1;
+      background: #e8edfa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 320px;
+      position: relative;
+      overflow: hidden;
+    }
+    .login-right img {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px 0 rgba(91,109,250,0.13);
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .container { flex-direction: column; min-width: 320px; }
+      .login-right { min-height: 220px; }
+      .login-left { padding: 32px 18px; }
+      .logo-row { margin-top: 24px; }
+    }
+    @media (max-width: 600px) {
+      .container { min-width: 0; }
+      .login-right { display: none; }
+      .login-left { padding: 24px 8px; }
     }
   </style>
 </head>
 <body>
-
-  <div class="ring">
-    <i style="--clr:#00ff0a;"></i>
-    <i style="--clr:#ff0057;"></i>
-    <i style="--clr:#fffd44;"></i>
-    <div class="login">
-      <h2>Login</h2>
-      <form id="loginForm">
-        <div class="inputBx">
-          <input type="text" placeholder="Username" name="username" required>
+  <div class="container">
+    <div class="login-left">
+      <div class="logo-row">
+        <img src="logo.png" alt="Otium Elegentia Logo">
+        <span>Otium Elegentia</span>
+      </div>
+      <div class="login-title">Login</div>
+      <div class="login-desc">to access your Otium Elegentia gallery account</div>
+      <form class="login-form" id="loginForm">
+        <div class="input-group">
+          <input type="email" id="email" name="username" placeholder=" " required autocomplete="username">
+          <label for="email">Email</label>
         </div>
-        <div class="inputBx">
-          <input type="password" placeholder="Password" name="password" required>
+        <div class="input-group">
+          <input type="password" id="password" name="password" placeholder=" " required autocomplete="current-password">
+          <label for="password">Password</label>
         </div>
-        <div class="inputBx">
-          <input type="submit" value="Sign in">
+        <div class="form-options">
+          <label>
+            <input type="checkbox" id="rememberMe">
+            Remember me
+          </label>
+          <a href="#">Forgot Password</a>
         </div>
+        <button type="submit" class="login-btn">Login</button>
       </form>
-      <div class="links">
-        <a href="#">Forget Password</a>
-        <a href="signup.html">Signup</a>
+      <div class="signup-link">
+        Don't have an account?
+        <a href="signup.html">Sign up</a>
+      </div>
+      <div class="or-divider">Or login with</div>
+      <div class="social-login">
+        <button class="social-btn" type="button"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook" width="20"> Facebook</button>
+        <button class="social-btn" type="button"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" width="20"> Google</button>
+        <button class="social-btn" type="button"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="Apple" width="20"> Apple</button>
       </div>
     </div>
+    <div class="login-right">
+      <img src="images/gallery.jpg" alt="Pic">
+    </div>
   </div>
-
   <script>
     document.querySelector('#loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      
-      const username = document.querySelector('[name="username"]').value;
+      const email = document.querySelector('[name="username"]').value;
       const password = document.querySelector('[name="password"]').value;
-      
-      const storedUser = localStorage.getItem('username');
+      const storedEmail = localStorage.getItem('email');
       const storedPass = localStorage.getItem('password');
-
-      console.log(username);
-      console.log(password);
-      
-      if(username === storedUser && password === storedPass) {
+      if(email === storedEmail && password === storedPass) {
         localStorage.setItem('isLoggedIn', 'true');
         window.location.href = 'index.html';
       } else {
-        alert('Invalid username or password');
+        alert('Invalid email or password');
       }
     });
   </script>
-
 </body>
 </html>
