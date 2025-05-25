@@ -220,48 +220,91 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('review-form');
-            const toggleFormButton = document.getElementById('toggle-form');
-            const submitReviewButton = document.getElementById('submit-review');
-            const reviewsDisplay = document.getElementById('reviews-display');
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('review-form');
+        const toggleFormButton = document.getElementById('toggle-form');
+        const submitReviewButton = document.getElementById('submit-review');
+        const reviewsDisplay = document.getElementById('reviews-display');
 
-            function loadReviews() {
-                const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
-                reviewsDisplay.innerHTML += reviews.map(review => `
-                    <div class="review-card">
-                        <p>${review.text}</p>
-                        <div class="stars">★★★★★</div>
-                        <div class="author">
-                            <img src="user.png" alt="Author">
-                            <span>${review.name} - Just now</span>
-                        </div>
-                    </div>
-                `).join('');
+        // Hardcoded reviews
+        const hardcodedReviews = [
+            {
+                text: "My experience with Otium Elegentia has been incredible. The platform is intuitive and showcases student creativity beautifully. Highly recommend!",
+                author: "Karan",
+                stars: 5,
+                date: "1 week ago"
+            },
+            {
+                text: "I found the gallery inspiring. The variety of hobbies and talents on display is impressive, and the community is so supportive.",
+                author: "Catherine",
+                stars: 4,
+                date: "10 days ago"
+            },
+            {
+                text: "The user interface is smooth and easy to navigate. I love how Otium Elegentia makes it simple to connect with other creative students.",
+                author: "Peter",
+                stars: 5,
+                date: "2 weeks ago"
             }
+        ];
 
-            toggleFormButton.addEventListener('click', () => {
-                form.style.display = form.style.display === 'none' ? 'flex' : 'none';
+        function loadReviews() {
+            reviewsDisplay.innerHTML = '';  // Clear previous content
+
+            // Render hardcoded reviews
+            hardcodedReviews.forEach(review => {
+                const reviewCard = document.createElement('div');
+                reviewCard.className = 'review-card';
+                reviewCard.innerHTML = `
+                    <p>${review.text}</p>
+                    <div class="stars">${'★'.repeat(review.stars)}${'☆'.repeat(5 - review.stars)}</div>
+                    <div class="author">
+                        <img src="user.png" alt="${review.author}">
+                        <span>${review.author} - ${review.date}</span>
+                    </div>
+                `;
+                reviewsDisplay.appendChild(reviewCard);
             });
 
-            submitReviewButton.addEventListener('click', () => {
-                const name = document.getElementById('name').value;
-                const review = document.getElementById('review').value;
-
-                if (name && review) {
-                    const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
-                    reviews.push({ name, text: review });
-                    localStorage.setItem('reviews', JSON.stringify(reviews));
-                    loadReviews();
-                    form.style.display = 'none';
-                    document.getElementById('name').value = '';
-                    document.getElementById('review').value = '';
-                }
+            // Render reviews from local storage
+            const storedReviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+            storedReviews.forEach(review => {
+                const reviewCard = document.createElement('div');
+                reviewCard.className = 'review-card';
+                reviewCard.innerHTML = `
+                    <p>${review.text}</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="author">
+                        <img src="user.png" alt="Author">
+                        <span>${review.name} - Just now</span>
+                    </div>
+                `;
+                reviewsDisplay.appendChild(reviewCard);
             });
+        }
 
-            loadReviews();
+        toggleFormButton.addEventListener('click', () => {
+            form.style.display = form.style.display === 'none' ? 'flex' : 'none';
         });
-    </script>
+
+        submitReviewButton.addEventListener('click', () => {
+            const name = document.getElementById('name').value;
+            const review = document.getElementById('review').value;
+
+            if (name && review) {
+                const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+                reviews.push({ name, text: review });
+                localStorage.setItem('reviews', JSON.stringify(reviews));
+                loadReviews();
+                form.style.display = 'none';
+                document.getElementById('name').value = '';
+                document.getElementById('review').value = '';
+            }
+        });
+
+        loadReviews();
+    });
+</script>
 </body>
 </html>
