@@ -317,7 +317,7 @@
 
   <script src="slider.js"></script>
   <script src="script.js"></script>
-  <script>
+ <script>
   // Popup toggle
   const navUser = document.getElementById('nav-user');
   const navUserPopup = document.getElementById('nav-user-popup');
@@ -349,6 +349,36 @@
   document.getElementById('logoutBtn').addEventListener('click', function() {
     localStorage.clear(); // Clear the entire local storage
     window.location.href = 'login.html';
+  });
+
+  // Handle Send a Message button click
+  const sendMessageButton = document.querySelector('.contactus-modern-send-btn');
+  const contactForm = document.querySelector('.contactus-modern-form');
+  
+  sendMessageButton.addEventListener('click', function() {
+    const name = contactForm.querySelector('input[placeholder="Full name"]').value.trim();
+    const email = contactForm.querySelector('input[placeholder="Email"]').value.trim();
+    const subject = contactForm.querySelector('input[placeholder="Subject"]').value.trim();
+    const message = contactForm.querySelector('textarea[placeholder="Message"]').value.trim();
+
+    // Simple email regex validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!name || !email || !subject || !message) {
+      alert('Please fill in all fields before sending your message.');
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    // Show confirmation popup
+    alert('Your message has been sent successfully!');
+
+    // Clear input fields
+    contactForm.reset();
   });
 </script>
 </body>
