@@ -23,6 +23,18 @@
       margin: 0;
       padding: 0;
     }
+    .gallery-inline-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .gallery-inline-img:hover {
+      box-shadow: 0 4px 16px rgba(34,34,74,0.18);
+    }
     .gallery-main-container {
       display: flex;
       min-height: 100vh;
@@ -383,7 +395,9 @@
           <div class="gallery-section-date">Personal Hobby</div>
           <div class="gallery-section-desc">
             Working out and biking are more than fitness—they're about self-improvement, mental clarity, and enjoying the journey. Consistency and determination lead to growth and achievement. <span class="more-text" style="display:none;">Enjoy the ride and appreciate this stage, because there will be a time we could no longer do what we love because of age or other factors. If you're not making progress instantly, just keep going anyway. Remember, consistency is the gift we give ourselves.</span>
-          </div>
+                <div class="gallery-inline-images" style="margin-top:10px;">
+                <img src="../images/pic13.jpg" alt="Workout GIF" class="gallery-inline-img" data-full="../images/pic13.jpg">
+              </div> </div>
           <button class="see-more-btn">See more</button>
         </div>
       </section>
@@ -572,6 +586,16 @@
         modalImg.alt = img.alt;
       });
     });
+
+        // Add this for inline images:
+    document.querySelectorAll('.gallery-inline-img').forEach(img => {
+      img.addEventListener('click', function() {
+        modal.classList.add('open');
+        modalImg.src = img.getAttribute('data-full');
+        modalImg.alt = img.alt;
+      });
+    });
+    
     modalClose.addEventListener('click', function() {
       modal.classList.remove('open');
       modalImg.src = '';
