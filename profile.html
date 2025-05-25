@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Profile - Otium Elegentia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylesheet.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #e6ecef;
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .profile-container {
+      max-width: 600px;
+      margin: 48px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(44,62,80,0.10);
+      padding: 32px 40px 0 40px;
+      position: relative;
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-bottom: 24px;
+    }
+    .profile-img-wrap {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #e6ecef;
+      background: #f5f6fa;
+      flex-shrink: 0;
+    }
+    .profile-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .profile-img-edit {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      font-size: 13px;
+      text-align: center;
+      cursor: pointer;
+      padding: 4px 0;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .profile-img-wrap:hover .profile-img-edit {
+      opacity: 1;
+    }
+    .profile-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #23224a;
+      margin-bottom: 4px;
+    }
+    .profile-subtitle {
+      color: #6c7a89;
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+    .profile-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+      margin-bottom: 24px;
+    }
+    .profile-form-group {
+      flex: 1 1 220px;
+      display: flex;
+      flex-direction: column;
+    }
+    .profile-form label {
+      font-size: 0.95rem;
+      color: #6c7a89;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    .profile-form input, .profile-form select, .profile-form textarea {
+      font-size: 1rem;
+      padding: 8px 12px;
+      border: 1px solid #e6ecef;
+      border-radius: 6px;
+      background: #f8fafb;
+      color: #23224a;
+      font-family: inherit;
+      transition: border 0.2s;
+    }
+    .profile-form input:focus, .profile-form select:focus, .profile-form textarea:focus {
+      border: 1.5px solid #7ed6df;
+      outline: none;
+    }
+    .profile-form textarea {
+      min-height: 48px;
+      resize: vertical;
+    }
+    .profile-section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #23224a;
+      margin: 24px 0 8px 0;
+    }
+    .profile-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 16px;
+      background: #f5f6fa;
+      border-radius: 0 0 16px 16px;
+      padding: 20px 40px;
+      margin: 0 -40px;
+      margin-top: 24px;
+    }
+    .profile-btn {
+      border: none;
+      border-radius: 24px;
+      padding: 10px 32px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .profile-btn-cancel {
+      background: #fff;
+      color: #23224a;
+      border: 2px solid #e6ecef;
+    }
+    .profile-btn-save {
+      background: #2ecc71;
+      color: #fff;
+    }
+    .profile-btn-save:active {
+      background: #27ae60;
+    }
+    .profile-btn-cancel:active {
+      background: #f5f6fa;
+    }
+    .profile-linkedin-btn {
+      background: #19a6e3;
+      color: #fff;
+      border: none;
+      border-radius: 24px;
+      padding: 8px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: inline-block;
+    }
+    .profile-linkedin-btn:active {
+      background: #168bbd;
+    }
+    @media (max-width: 700px) {
+      .profile-container { padding: 16px 8px 0 8px; }
+      .profile-actions { padding: 16px 8px; margin: 0 -8px; }
+      .profile-header { flex-direction: column; gap: 12px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-header">
+      <div class="profile-img-wrap" id="profileImgWrap">
+        <img id="profileImg" src="images/default-profile.png" alt="Profile picture">
+        <label class="profile-img-edit" for="profileImgInput">Edit</label>
+        <input type="file" id="profileImgInput" accept="image/*" style="display:none">
+      </div>
+      <div>
+        <div class="profile-title" id="profileTitle">My Profile</div>
+        <div class="profile-subtitle" id="profileSubtitle"></div>
+      </div>
+    </div>
+    <form id="profileForm" autocomplete="off">
+      <div class="profile-form">
+        <div class="profile-form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" maxlength="32" required>
+        </div>
+        <div class="profile-form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" maxlength="32" required>
+        </div>
+        <div class="profile-form-group">
+          <label for="timezone">Time Zone</label>
+          <select id="timezone">
+            <option value="+8 GMT">+8 GMT</option>
+            <option value="+7 GMT">+7 GMT</option>
+            <option value="+6 GMT">+6 GMT</option>
+            <option value="+5 GMT">+5 GMT</option>
+            <option value="+4 GMT">+4 GMT</option>
+            <option value="+3 GMT">+3 GMT</option>
+            <option value="+2 GMT">+2 GMT</option>
+            <option value="+1 GMT">+1 GMT</option>
+            <option value="0 GMT">0 GMT</option>
+          </select>
+        </div>
+        <div class="profile-form-group">
+          <label for="phone">Phone</label>
+          <input type="text" id="phone" maxlength="20">
+        </div>
+        <div class="profile-form-group" style="flex-basis:100%;">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" maxlength="64" required>
+        </div>
+        <div class="profile-form-group" style="flex-basis:100%;">
+          <label for="hobbies">Hobbies / Interests</label>
+          <input type="text" id="hobbies" maxlength="64" placeholder="e.g. Drawing, Basketball, Reading">
+        </div>
+        <div class="profile-form-group" style="flex-basis:100%;">
+          <label for="bio">Short Bio</label>
+          <textarea id="bio" maxlength="200" placeholder="Tell us something about yourself..."></textarea>
+        </div>
+      </div>
+      <div class="profile-section-title">Authentication</div>
+      <div style="font-size:0.98rem; color:#6c7a89; margin-bottom:8px;">
+        <b>SAML ID:</b> <span id="samlId"></span><br>
+        <b>SAML Details:</b> <a href="#" id="samlDetails" style="color:#19a6e3;word-break:break-all"></a>
+      </div>
+      <div class="profile-actions">
+        <button type="button" class="profile-btn profile-btn-cancel" onclick="window.location.href='index.html'">&#10005;</button>
+        <button type="submit" class="profile-btn profile-btn-save">&#10003;</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    // Default user data
+    const defaultProfile = {
+      firstName: '',
+      lastName: '',
+      timezone: '+8 GMT',
+      phone: '',
+      email: '',
+      hobbies: '',
+      bio: '',
+      samlId: '',
+      samlDetails: '',
+      profileImg: 'images/default-profile.png'
+    };
+
+    // Try to get login info from localStorage (simulate login)
+    function getLoginInfo() {
+      // Example: localStorage.setItem('userLogin', JSON.stringify({username: 'student123', email: 'student@email.com'}));
+      let login = localStorage.getItem('userLogin');
+      if (login) {
+        try {
+          return JSON.parse(login);
+        } catch {
+          return {};
+        }
+      }
+      return {};
+    }
+
+    // Load from localStorage or set defaults
+    function loadProfile() {
+      let profile = JSON.parse(localStorage.getItem('userProfile')) || {};
+      let login = getLoginInfo();
+
+      // If no name, use username/email from login
+      let fullName = (profile.firstName || '') + ' ' + (profile.lastName || '');
+      fullName = fullName.trim();
+      if (!fullName) {
+        if (login.username) {
+          fullName = login.username;
+        } else if (login.email) {
+          fullName = login.email.split('@')[0];
+        } else {
+          fullName = 'User';
+        }
+      }
+
+      // Set fields
+      document.getElementById('firstName').value = profile.firstName || '';
+      document.getElementById('lastName').value = profile.lastName || '';
+      document.getElementById('timezone').value = profile.timezone || '+8 GMT';
+      document.getElementById('phone').value = profile.phone || '';
+      document.getElementById('email').value = profile.email || login.email || '';
+      document.getElementById('hobbies').value = profile.hobbies || '';
+      document.getElementById('bio').value = profile.bio || '';
+      document.getElementById('profileImg').src = profile.profileImg || 'images/default-profile.png';
+
+      // Show full name and email
+      document.getElementById('profileTitle').textContent = fullName;
+      document.getElementById('profileSubtitle').textContent = (login.email || profile.email || '');
+
+      // SAML info
+      let emailForSaml = document.getElementById('email').value || login.email || '';
+      document.getElementById('samlId').textContent = emailForSaml;
+      let samlUrl = emailForSaml ? 'https://otiumelegentia.com/login/secure/' + btoa(emailForSaml) : 'https://otiumelegentia.com/login/secure/yourSAMLid';
+      document.getElementById('samlDetails').textContent = samlUrl;
+      document.getElementById('samlDetails').href = samlUrl;
+    }
+
+    // Save to localStorage (allow incomplete fields)
+    function saveProfile(e) {
+      e.preventDefault();
+      const profile = {
+        firstName: document.getElementById('firstName').value.trim(),
+        lastName: document.getElementById('lastName').value.trim(),
+        timezone: document.getElementById('timezone').value,
+        phone: document.getElementById('phone').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        hobbies: document.getElementById('hobbies').value.trim(),
+        bio: document.getElementById('bio').value.trim(),
+        samlId: document.getElementById('email').value.trim(),
+        samlDetails: 'https://otiumelegentia.com/login/secure/' + btoa(document.getElementById('email').value.trim()),
+        profileImg: document.getElementById('profileImg').src
+      };
+      localStorage.setItem('userProfile', JSON.stringify(profile));
+      alert('Profile saved!');
+      loadProfile();
+    }
+
+    // Profile image upload (fix: always update and preview)
+    document.getElementById('profileImgInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        document.getElementById('profileImg').src = evt.target.result;
+        // Save image to localStorage
+        let profile = JSON.parse(localStorage.getItem('userProfile')) || defaultProfile;
+        profile.profileImg = evt.target.result;
+        localStorage.setItem('userProfile', JSON.stringify(profile));
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Click edit triggers file input
+    document.querySelector('.profile-img-edit').onclick = function(e) {
+      e.preventDefault();
+      document.getElementById('profileImgInput').click();
+    };
+
+    // On load
+    window.onload = loadProfile;
+    document.getElementById('profileForm').addEventListener('submit', saveProfile);
+  </script>
+</body>
+</html>

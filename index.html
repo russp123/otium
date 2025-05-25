@@ -38,6 +38,8 @@
         </div>
         <div class="nav-user-popup" id="nav-user-popup">
           <button class="nav-user-popup-btn" id="profileBtn">Profile</button>
+          <button class="nav-user-popup-btn" id="faqsBtn">FAQs</button>
+          <button class="nav-user-popup-btn" id="reviewsBtn">Reviews</button>
           <button class="nav-user-popup-btn" id="logoutBtn">Logout</button>
         </div>
       </div>
@@ -63,7 +65,6 @@
           <p class="hero-desc">
             Welcome to <b>Otium Elegentia</b>—a vibrant space where students share their passions, hobbies, and creative journeys. Our gallery celebrates the unique stories, talents, and inspirations of each member, from music and sports to art, literature, and beyond. Explore diverse collections, discover new interests, and connect with a community that values growth, friendship, and self-expression.
           </p>
-          <a href="#collections" class="explore-btn">Explore Our Collections</a>
         </div>
       </div>
       <div class="slider-center">
@@ -335,6 +336,14 @@
     // Profile button
     document.getElementById('profileBtn').addEventListener('click', function() {
       window.location.href = 'profile.html';
+    });
+    // FAQs button
+    document.getElementById('faqsBtn').addEventListener('click', function() {
+      window.location.href = 'faqs.html';
+    });
+    // FAQs button
+    document.getElementById('reviewsBtn').addEventListener('click', function() {
+      window.location.href = 'reviews.html';
     });
     // Logout button
     document.getElementById('logoutBtn').addEventListener('click', function() {
