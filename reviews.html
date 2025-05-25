@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews - Otium Elegentia</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 40px;
+            background-color: #f7f7f7;
+            color: #333;
+            position: relative;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px; /* Changed from right to left */
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #e55335;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 2rem;
+        }
+        .header span {
+            color: #ff6347;
+        }
+        .summary {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .summary p {
+            font-weight: bold;
+        }
+        .summary .trustpilot {
+            margin-left: 10px;
+        }
+        .reviews-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+        }
+        .review-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 250px;
+            text-align: left;
+            font-size: 1.2em;
+            padding-right: 20px;
+            border-right: 2px solid #ddd;
+        }
+        .review-side p {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .review-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        #reviews-display {
+            overflow-x: auto;
+            display: flex;
+            gap: 20px;
+            padding: 10px;
+            max-width: 1300px;
+        }
+        .review-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            min-width: 250px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .review-card p {
+            margin-bottom: 10px;
+        }
+        .review-card .author {
+            display: flex;
+            align-items: center;
+        }
+        .review-card .author img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .review-card .author span {
+            font-weight: bold;
+        }
+        .stars {
+            color: #ff6347;
+            margin-bottom: 15px;
+        }
+        .add-review {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            font-size: 2rem;
+            color: #ff6347;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+        }
+        .add-review:hover {
+            background-color: #f0f0f0;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            top: 20px;
+        }
+        #review-form {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 300px;
+        }
+        #review-form input, #review-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            resize: none;
+        }
+        #review-form button {
+            padding: 10px 15px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">←</a>
+    <div class="header">
+        <h1>Discover creativity, <span>share with confidence. </span></h1>
+        <div class="summary">
+            <p>4.2/5 <span class="trustpilot"> Otium Rating </span>– Inspired by 5210 enthusiasts.</p>
+        </div>
+    </div>
+    <div class="reviews-section">
+        <div class="review-side">
+            <p>What our users are saying</p>
+            <div class="form-container">
+                <div class="add-review" id="toggle-form">+</div>
+                <div id="review-form" class="review-card">
+                    <input type="text" id="name" placeholder="Your Name" required>
+                    <textarea id="review" placeholder="Your Review" rows="4" required></textarea>
+                    <button id="submit-review">Submit Review</button>
+                </div>
+            </div>
+        </div>
+        <div class="review-area">
+            <div id="reviews-display">
+                <!-- Hardcoded reviews -->
+                <div class="review-card">
+                    <p>My experience with Otium Elegentia has been incredible. The platform is intuitive and showcases student creativity beautifully. Highly recommend!</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="author">
+                        <img src="user.png" alt="Karan">
+                        <span>Karan - 1 week ago</span>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p>I found the gallery inspiring. The variety of hobbies and talents on display is impressive, and the community is so supportive.</p>
+                    <div class="stars">★★★★☆</div>
+                    <div class="author">
+                        <img src="user.png" alt="Catherine">
+                        <span>Catherine - 10 days ago</span>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p>The user interface is smooth and easy to navigate. I love how Otium Elegentia makes it simple to connect with other creative students.</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="author">
+                        <img src="user.png" alt="Peter">
+                        <span>Peter - 2 weeks ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('review-form');
+            const toggleFormButton = document.getElementById('toggle-form');
+            const submitReviewButton = document.getElementById('submit-review');
+            const reviewsDisplay = document.getElementById('reviews-display');
+
+            function loadReviews() {
+                const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+                reviewsDisplay.innerHTML += reviews.map(review => `
+                    <div class="review-card">
+                        <p>${review.text}</p>
+                        <div class="stars">★★★★★</div>
+                        <div class="author">
+                            <img src="user.png" alt="Author">
+                            <span>${review.name} - Just now</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            toggleFormButton.addEventListener('click', () => {
+                form.style.display = form.style.display === 'none' ? 'flex' : 'none';
+            });
+
+            submitReviewButton.addEventListener('click', () => {
+                const name = document.getElementById('name').value;
+                const review = document.getElementById('review').value;
+
+                if (name && review) {
+                    const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+                    reviews.push({ name, text: review });
+                    localStorage.setItem('reviews', JSON.stringify(reviews));
+                    loadReviews();
+                    form.style.display = 'none';
+                    document.getElementById('name').value = '';
+                    document.getElementById('review').value = '';
+                }
+            });
+
+            loadReviews();
+        });
+    </script>
+</body>
+</html>
