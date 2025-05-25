@@ -318,38 +318,38 @@
   <script src="slider.js"></script>
   <script src="script.js"></script>
   <script>
-    // Popup toggle
-    const navUser = document.getElementById('nav-user');
-    const navUserPopup = document.getElementById('nav-user-popup');
-    navUser.addEventListener('click', function(e) {
-      navUserPopup.style.display = navUserPopup.style.display === 'flex' ? 'none' : 'flex';
-      navUserPopup.style.flexDirection = 'column';
-      navUser.classList.toggle('active');
-      e.stopPropagation();
-    });
-    document.addEventListener('click', function(e) {
-      if (!navUser.contains(e.target) && !navUserPopup.contains(e.target)) {
-        navUserPopup.style.display = 'none';
-        navUser.classList.remove('active');
-      }
-    });
-    // Profile button
-    document.getElementById('profileBtn').addEventListener('click', function() {
-      window.location.href = 'profile.html';
-    });
-    // FAQs button
-    document.getElementById('faqsBtn').addEventListener('click', function() {
-      window.location.href = 'faqs.html';
-    });
-    // FAQs button
-    document.getElementById('reviewsBtn').addEventListener('click', function() {
-      window.location.href = 'reviews.html';
-    });
-    // Logout button
-    document.getElementById('logoutBtn').addEventListener('click', function() {
-      localStorage.removeItem('isLoggedIn');
-      window.location.href = 'login.html';
-    });
-  </script>
+  // Popup toggle
+  const navUser = document.getElementById('nav-user');
+  const navUserPopup = document.getElementById('nav-user-popup');
+  navUser.addEventListener('click', function(e) {
+    navUserPopup.style.display = navUserPopup.style.display === 'flex' ? 'none' : 'flex';
+    navUserPopup.style.flexDirection = 'column';
+    navUser.classList.toggle('active');
+    e.stopPropagation();
+  });
+  document.addEventListener('click', function(e) {
+    if (!navUser.contains(e.target) && !navUserPopup.contains(e.target)) {
+      navUserPopup.style.display = 'none';
+      navUser.classList.remove('active');
+    }
+  });
+  // Profile button
+  document.getElementById('profileBtn').addEventListener('click', function() {
+    window.location.href = 'profile.html';
+  });
+  // FAQs button
+  document.getElementById('faqsBtn').addEventListener('click', function() {
+    window.location.href = 'faqs.html';
+  });
+  // Reviews button
+  document.getElementById('reviewsBtn').addEventListener('click', function() {
+    window.location.href = 'reviews.html';
+  });
+  // Logout button
+  document.getElementById('logoutBtn').addEventListener('click', function() {
+    localStorage.clear(); // Clear the entire local storage
+    window.location.href = 'login.html';
+  });
+</script>
 </body>
 </html>
