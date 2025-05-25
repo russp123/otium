@@ -23,6 +23,12 @@
       margin: 0;
       padding: 0;
     }
+    .gallery-inline-images {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
     .gallery-inline-img {
       width: 60px;
       height: 60px;
@@ -314,6 +320,7 @@
         height: 180px;
         max-width: 100vw;
       }
+      
     }
   </style>
 </head>
@@ -365,6 +372,9 @@
         <button class="gallery-category" data-target="manhwa">
           <span class="gallery-category-dot"></span>Manhwa
         </button>
+        <button class="gallery-category" data-target="gaming">
+          <span class="gallery-category-dot"></span>Gaming
+        </button>
       </nav>
     </aside>
     <!-- Main Content -->
@@ -395,9 +405,11 @@
           <div class="gallery-section-date">Personal Hobby</div>
           <div class="gallery-section-desc">
             Working out and biking are more than fitness—they're about self-improvement, mental clarity, and enjoying the journey. Consistency and determination lead to growth and achievement. <span class="more-text" style="display:none;">Enjoy the ride and appreciate this stage, because there will be a time we could no longer do what we love because of age or other factors. If you're not making progress instantly, just keep going anyway. Remember, consistency is the gift we give ourselves.</span>
-                <div class="gallery-inline-images" style="margin-top:10px;">
-                <img src="../images/pic13.jpg" alt="Workout GIF" class="gallery-inline-img" data-full="../images/pic13.jpg">
-              </div> </div>
+        <div class="gallery-inline-images" style="margin-top:10px;">
+          <img src="../images/fitness1.jpg" alt="Workout GIF" class="gallery-inline-img" data-full="../images/fitness1.jpg">
+            <img src="../images/pic13.jpg" alt="Workout GIF" class="gallery-inline-img" data-full="../images/pic13.jpg">
+        </div> 
+ </div> 
           <button class="see-more-btn">See more</button>
         </div>
       </section>
@@ -459,6 +471,30 @@
           <button class="see-more-btn">See more</button>
         </div>
       </section>
+
+      <!-- New Gaming Category Heading -->
+      <h2 class="gallery-category-heading" data-category-title="gaming">Gaming World</h2>
+      <!-- Gaming Section -->
+      <section class="gallery-section-block" data-category="gaming">
+        <img class="gallery-section-img" src="../images/gamingfront.jpg" alt="Gaming" data-full="../images/gamingfront.jpg">
+        <div class="gallery-section-info">
+          <div class="gallery-section-type">Gaming</div>
+          <h3 class="gallery-section-title">Mobile & PC Gaming</h3>
+          <div class="gallery-section-date">Digital Hobby</div>
+          <div class="gallery-section-desc">
+      Gaming is more than just a pastime for me; it's a way to escape into fantastical worlds and live out epic adventures. Whether I'm on my phone or my PC, every session is a new adventure that fuels my love for storytelling and strategy. Gaming has introduced me to a vibrant community where everyone's eager to share tips, strategies, and memorable experiences. <span class="more-text" style="display:none;">From the adrenaline rush of action games to the thoughtful challenges of puzzles, each moment spent gaming is an opportunity for joy and learning. </span>
+        <div class="gallery-inline-images" style="margin-top:10px;">
+          <img src="../images/gaming1.jpg" alt="Workout GIF" class="gallery-inline-img" data-full="../images/gaming1.jpg">
+            <img src="../images/gaming2.jpg" alt="Workout GIF" class="gallery-inline-img" data-full="../images/gaming2.jpg">
+                        <img src="../images/gaming3.jpg" alt="Workout GIF" class="gallery-inline-img" data-full="../images/gaming3.jpg">
+
+        </div> </div>
+          <button class="see-more-btn">See more</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
     </main>
   </div>
   <!-- Modal for image preview -->
